@@ -1,0 +1,5 @@
+#
+# test_role/tasks/main.yml ---
+#
+
+- include_tasks: "main-{{ansible_os_family}}.yml"

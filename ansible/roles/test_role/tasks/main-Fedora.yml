@@ -1,0 +1,9 @@
+#
+# test_role/tasks/main-Fedora.yml ---
+#
+
+- name: "emacs"
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - emacs

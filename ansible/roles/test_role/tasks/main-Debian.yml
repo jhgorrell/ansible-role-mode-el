@@ -1,0 +1,14 @@
+#
+# test_role/tasks/main-Debian.yml ---
+#
+
+- name: "emacs"
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - emacs
+
+# (ansible-role-mode-find-top)
+# (ansible-role-mode-dired-top)
+# (progn (ansible-role-mode nil) (ansible-role-mode t))
+
