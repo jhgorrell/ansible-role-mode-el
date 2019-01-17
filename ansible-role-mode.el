@@ -1,12 +1,22 @@
-;;; ansible-role-mode.el --- helps edit an ansible role.
+;;; ansible-role-mode.el --- helps edit an ansible role. -*- lexical-binding: t -*-
 ;;
 ;; ansible-role-mode-el/ansible-role-mode.el ---
 ;;
-
-;; not really, but needed for the hook.
-;; (require 'yaml-mode)
+;; Author:      Harley Gorrell <harley@panix.com>
+;; Homepage:    https://github.com/jhgorrell/ansible-role-mode-el
+;; Keywords:    ansible roles
+;; License:     GPL-v3
+;; Melpa:       https://melpa.org/#/ansible-role-mode
+;; Version:
+;; Package-Requires: ((f "0.16.2"))
 
 ;;; Commentary:
+;;
+;; (autoload 'ansible-role-mode "ansible-role-mode" t)
+;;
+;;
+;; not really, but needed for the hook.
+;; (require 'yaml-mode)
 
 ;;; Code:
 
@@ -21,16 +31,18 @@
 
 (defun ansible-role-mode-find-top ()
   "Find the top of the role directory.
-It has a 'tasks' directory."
-  (let ((d (cond
-            ((file-directory-p "./tasks")
-             ".")
-            ((file-directory-p "./../tasks")
-             "..")
-            ((file-directory-p "./../../tasks")
-             "../..")
-            (t
-             nil))))
+
+The role dir has a 'tasks' directory and is at most two above this file."
+  (let ((d 
+         (cond
+          ((file-directory-p "./tasks")
+           ".")
+          ((file-directory-p "./../tasks")
+           "..")
+          ((file-directory-p "./../../tasks")
+           "../..")
+          (t
+           nil))))
     (if d
       (expand-file-name d))))
   
