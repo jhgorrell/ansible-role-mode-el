@@ -1,0 +1,9 @@
+;; (defvar ansible-role-mode-find-files-regexp
+;;   ".*.ya?ml")
+;; (defun ansible-role-mode-find-files (top)
+;;   "Find the files which "
+;;   (let ((default-directory (expand-file-name top)))
+;;     (find-lisp-find-files
+;;      "."
+;;      ansible-role-mode-find-files-regexp)))
+;; ;; (ansible-role-mode-find-files "./ansible/roles/test_role")

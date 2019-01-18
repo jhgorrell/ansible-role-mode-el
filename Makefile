@@ -15,7 +15,9 @@ _compile_el:
 	${EMACS} -Q --batch --eval '(byte-compile-file "./ansible-role-mode.el")'
 
 _tests:
-	${EMACS} -Q --batch -l tests.el -f ert-run-tests-batch-and-exit
+	${EMACS} --batch \
+	  -l ./ansible-role-mode.el -l tests.el \
+	  -f ert-run-tests-batch-and-exit
 
 # not in 24.4.1
 _checkdoc:
