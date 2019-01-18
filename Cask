@@ -1,10 +1,11 @@
 (source gnu)
 (source melpa)
 
-(package-file "TODO")
+(package-file "ansible-role-mode.el")
 
 (development
- (depends-on "f")
+ (depends-on "checkdoc")
  (depends-on "ecukes")
+ (depends-on "el-mock")
  (depends-on "ert-runner")
- (depends-on "el-mock"))
+ (depends-on "f"))

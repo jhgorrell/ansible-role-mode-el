@@ -8,8 +8,6 @@
   with_items:
     - emacs
 
-
 # (ansible-role-mode-find-top)
-# (ansible-role-mode-dired-role)
+# (ansible-role-mode-dired)
 # (progn (ansible-role-mode nil) (ansible-role-mode t))
-

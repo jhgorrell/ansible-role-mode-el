@@ -7,8 +7,8 @@
 ;; Keywords:    ansible roles
 ;; License:     GPL-v3
 ;; Melpa:       https://melpa.org/#/ansible-role-mode
-;; Version:
-;; Package-Requires: ((f "0.16.2"))
+;; Version:     0.0.1
+;; Package-Requires: ((f) (s))
 
 ;;; Commentary:
 ;;
@@ -35,9 +35,8 @@
 ;;;;;
 
 (defun ansible-role-mode-find-top (&optional path)
-  "Find the top of the role directory.
-
-The role dir has a 'tasks' directory and is at most two above this file."
+  "Find the top of the role directory starting from PATH.
+The role dir has a 'tasks' directory and is at most two above PATH."
   (let ((path (or path default-directory)))
     (let ((top
            (cond
@@ -52,50 +51,52 @@ The role dir has a 'tasks' directory and is at most two above this file."
       (if top
         (expand-file-name top)))))
 
+;; (let ((default-directory test-role-path)) (ansible-role-mode-find-top))
+
 (defun ansible-role-mode-include-file-p (path)
-  "Return t if PATH should be included in the list."
+  "Return t if PATH should be included in the list of role files."
   (cond
    ((s-suffix? "~" path)
     nil)
    (t
     t)))
 
-(defun ansible-role-mode-list-files (top)
-  "List the files in this mode, returning paths relative to TOP."
+(defun ansible-role-mode-list-files (role-top)
+  "List the files of this role, returning paths relative to ROLE-TOP."
   (sort
    (mapcar
     (lambda (path)
-      (f-relative path top))
-    (f-files top
+      (f-relative path role-top))
+    (f-files role-top
              'ansible-role-mode-include-file-p
              t))
    'string-lessp))
    
-;; (ansible-role-mode-list-files "./ansible/roles/test_role")
+;; (ansible-role-mode-list-files test-role-top)
 
 (defun ansible-role-mode-dired ()
   "Dired the files in this role."
   (interactive)
-  (let ((top (ansible-role-mode-find-top)))
-    (if top
-      (let ((default-directory top))
+  (let ((role-top (ansible-role-mode-find-top)))
+    (if role-top
+      (let ((default-directory role-top))
         ;; @todo: generate a better list
-        (dired (append (list top) (ansible-role-mode-list-files top)))))))
+        (dired (append (list role-top) (ansible-role-mode-list-files role-top)))))))
 
 (defun ansible-role-mode-dired-templates ()
   "Dired the templates of the current role."
   (interactive)
-  (let ((top (ansible-role-mode-find-top)))
-    (if top
-      (let ((ttop (f-join top "templates")))
-        (make-directory ttop t)
-        (dired ttop)))))
+  (let ((role-top (ansible-role-mode-find-top)))
+    (if role-top
+      (let ((template-dir (f-join role-top "templates")))
+        (make-directory template-dir t)
+        (dired template-dir)))))
 
 (defun ansible-role-mode-edit (path)
   "Edit the file at PATH of the current role."
-  (let ((top (ansible-role-mode-find-top)))
-    (if top
-      (find-file (f-join top path)))))
+  (let ((role-top (ansible-role-mode-find-top)))
+    (if role-top
+      (find-file (f-join role-top path)))))
 
 (defun ansible-role-mode-edit-defaults-main-yml ()
   "Edit ./defaults/main.yml of the current role."

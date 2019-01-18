@@ -11,16 +11,30 @@ SHELL:=bash
 
 #####
 
-_compile_el:
-	${EMACS} -Q --batch --eval '(byte-compile-file "./ansible-role-mode.el")'
+_emacs_version:
+	emacs --version
+
+#####
+
+_rm_elc:
+	-rm -f *.elc
+
+_cask_build:
+	cask build
+
+_cask_install:
+	cask install
+
+_cask_update:
+	cask update
 
 _tests:
-	${EMACS} --batch \
-	  -l ./ansible-role-mode.el -l tests.el \
-	  -f ert-run-tests-batch-and-exit
+	cask exec ${EMACS} --script tests.el
 
 # not in 24.4.1
 _checkdoc:
-	${EMACS} --batch --eval "(if (fboundp 'checkdoc-file) (checkdoc-file \"./ansible-role-mode.el\"))"
+	cask exec ${EMACS} --batch --eval "(if (fboundp 'checkdoc-file) (checkdoc-file \"./ansible-role-mode.el\"))"
 
-_precommit: _compile_el _tests _checkdoc
+#####
+
+_precommit: _rm_elc _cask_build _tests _checkdoc
