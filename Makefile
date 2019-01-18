@@ -25,6 +25,9 @@ _cask_build:
 _cask_install:
 	cask install
 
+.cask:
+	make _cask_install
+
 _cask_update:
 	cask update
 
@@ -37,4 +40,4 @@ _checkdoc:
 
 #####
 
-_precommit: _rm_elc _cask_build _tests _checkdoc
+_precommit: _rm_elc .cask _cask_build _tests _checkdoc
