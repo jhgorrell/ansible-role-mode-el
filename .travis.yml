@@ -1,0 +1,18 @@
+#
+# ansible-role-mode-el/.travis.yml ---
+#
+
+language: emacs-lisp
+
+dist: xenial
+
+addons:
+  apt:
+    packages:
+      - emacs-nox
+
+install:
+  - make _cask_install
+
+script:
+  - make
