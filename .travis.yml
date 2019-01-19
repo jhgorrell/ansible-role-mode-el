@@ -2,7 +2,7 @@
 # ansible-role-mode-el/.travis.yml ---
 #
 
-language: emacs-lisp
+language: generic
 
 dist: xenial
 
