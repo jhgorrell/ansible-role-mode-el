@@ -38,7 +38,7 @@
   "Find the top of the role directory starting from PATH.
 The role dir has a 'tasks' directory and is at most two above PATH."
   (let ((path (or path default-directory)))
-    (let ((top
+    (let ((role-top
            (cond
             ((f-directory-p (f-join path "tasks"))
              path)
@@ -48,8 +48,8 @@ The role dir has a 'tasks' directory and is at most two above PATH."
              (f-join path ".." ".."))
             (t
              nil))))
-      (if top
-        (expand-file-name top)))))
+      (if role-top
+        (expand-file-name role-top)))))
 
 ;; (let ((default-directory test-role-path)) (ansible-role-mode-find-top))
 
@@ -71,7 +71,7 @@ The role dir has a 'tasks' directory and is at most two above PATH."
              'ansible-role-mode-include-file-p
              t))
    'string-lessp))
-   
+
 ;; (ansible-role-mode-list-files test-role-top)
 
 (defun ansible-role-mode-dired ()
@@ -108,24 +108,25 @@ The role dir has a 'tasks' directory and is at most two above PATH."
   (interactive)
   (ansible-role-mode-edit "tasks/main.yml"))
 
-(easy-mmode-define-minor-mode ansible-role-mode
-  "Toggle ansible-role mode.
+(easy-mmode-define-minor-mode
+ ansible-role-mode
+ "Toggle ansible-role mode.
 
 With no argument, this command toggles the mode.
 Non-null prefix argument turns on the mode.
 Null prefix argument turns off the mode."
-  ;; The initial value.
-  :init-value nil
-  ;; The indicator for the mode line.
-  :lighter ansible-role-mode-lighter
-  ;; The minor mode bindings.
-  :keymap
-  '(
-    ("\C-cT" . ansible-role-mode-dired-templates)
-    ("\C-cd" . ansible-role-mode-edit-defaults-main-yml)
-    ("\C-cf" . ansible-role-mode-dired)
-    ("\C-ct" . ansible-role-mode-edit-tasks-main-yml)
-    ))
+ ;; The initial value.
+ :init-value nil
+ ;; The indicator for the mode line.
+ :lighter ansible-role-mode-lighter
+ ;; The minor mode bindings.
+ :keymap
+ '(
+   ("\C-cT" . ansible-role-mode-dired-templates)
+   ("\C-cd" . ansible-role-mode-edit-defaults-main-yml)
+   ("\C-cf" . ansible-role-mode-dired)
+   ("\C-ct" . ansible-role-mode-edit-tasks-main-yml)
+   ))
 
 ;;;;;
 
@@ -137,8 +138,8 @@ Null prefix argument turns off the mode."
 (if ansible-role-mode-add-yaml-mode-hook
   (add-hook 'yaml-mode-hook 'ansible-role-mode-maybe-enable))
 
-;; (eval-buffer)
-;; (checkdoc)
+;;
+;; (progn (indent-buffer) (eval-buffer) (checkdoc))
 ;; (find-file "./tests.el")
 ;; (find-file "./ansible/roles/test_role/tasks/main-Debian.yml")
 

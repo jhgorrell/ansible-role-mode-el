@@ -1,14 +1,17 @@
 ansible-role-mode-el/README
 ==================================================
 
-.. image:: https://travis-ci.org/jhgorrell/ansible-role-mode-el.svg?branch=master
+.. image::  https://melpa.org/packages/ansible-role-mode.svg
+   :target: https://melpa.org/#/ansible-role-mode
+
+.. image::  https://travis-ci.org/jhgorrell/ansible-role-mode-el.svg?branch=master
    :target: https://travis-ci.org/jhgorrell/ansible-role-mode-el
 
 Provides a minor mode for use with ansible roles.
 
 yaml-mode does and ok job for editing the file.
 ``ansible-role-mode`` helps navigate between the files,
-which all seemed to be named (``main.yml``)
+which all seemed to be named ``main.yml``.
 
 Keybindings:
 
