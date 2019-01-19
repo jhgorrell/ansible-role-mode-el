@@ -1,5 +1,5 @@
 language: generic
-
+sudo: required
 dist: xenial
 
 addons:
@@ -9,7 +9,7 @@ addons:
 
 install:
   - echo "install"
-  - make _cask_install
+  - make _install_cask_pkg
 
 script:
   - echo "script"

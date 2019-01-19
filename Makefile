@@ -19,6 +19,10 @@ _emacs_version:
 _rm_elc:
 	-rm -f *.elc
 
+# I am sure this is totally safe...
+_install_cask_pkg:
+	curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+
 _cask_build:
 	cask build
 
