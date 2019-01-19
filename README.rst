@@ -1,16 +1,29 @@
 ansible-role-mode-el/README
 ==================================================
 
-Provides a minor mode for editing ansible roles.
+.. image:: https://travis-ci.org/jhgorrell/ansible-role-mode-el.svg?branch=master
+   :target: https://travis-ci.org/jhgorrell/ansible-role-mode-el
+
+Provides a minor mode for use with ansible roles.
 
 yaml-mode does and ok job for editing the file.
-``ansible-role-mode`` helps navigate between the buffers.
+``ansible-role-mode`` helps navigate between the files,
+which all seemed to be named (``main.yml``)
 
 Keybindings:
 
 ::
 
-    \C-c\C-t top of role
+    "\C-cT"  ansible-role-mode-dired-templates
+    "\C-cd"  ansible-role-mode-edit-defaults-main-yml
+    "\C-cf"  ansible-role-mode-dired
+    "\C-ct"  ansible-role-mode-edit-tasks-main-yml
+
+You may also want to bind ``ansible-role-mode-dired`` to a function key.
+
+::
+
+    (global-set-key [f9] 'ansible-role-mode-dired)
 
 
 Quickstart:
@@ -21,3 +34,11 @@ Quickstart:
     git clone git@github.com:jhgorrell/ansible-role-mode-el.git
     cd ansible-role-mode-el
     make
+
+
+Links:
+----------------------------------------
+
+- Github: https://github.com/jhgorrell/ansible-role-mode-el
+- Travis: https://travis-ci.org/jhgorrell/ansible-role-mode-el
+- Melpa: https://melpa.org/#/ansible-role-mode

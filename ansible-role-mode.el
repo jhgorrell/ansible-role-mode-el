@@ -121,7 +121,7 @@ Null prefix argument turns off the mode."
   ;; The minor mode bindings.
   :keymap
   '(
-    ("\C-ct" . ansible-role-mode-dired-templates)
+    ("\C-cT" . ansible-role-mode-dired-templates)
     ("\C-cd" . ansible-role-mode-edit-defaults-main-yml)
     ("\C-cf" . ansible-role-mode-dired)
     ("\C-ct" . ansible-role-mode-edit-tasks-main-yml)
