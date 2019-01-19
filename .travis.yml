@@ -4,8 +4,6 @@
 
 language: generic
 
-dist: xenial
-
 addons:
   apt:
     packages:
