@@ -1,8 +1,6 @@
-#
-# ansible-role-mode-el/.travis.yml ---
-#
-
 language: generic
+
+dist: xenial
 
 addons:
   apt:
@@ -10,7 +8,10 @@ addons:
       - emacs-nox
 
 install:
+  - echo "install"
   - make _cask_install
 
 script:
+  - echo "script"
+  - printenv | sort
   - make
