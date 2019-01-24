@@ -16,7 +16,7 @@ jobs:
           command: "apt-get update"
       - run:
           name: "apt-get install"
-          command: "apt-get install -y ca-certificates emacs-nox make wget curl ssh python3"
+          command: "apt-get install -y git ca-certificates emacs-nox make wget curl ssh python3"
 
       - restore_cache:
           keys:
