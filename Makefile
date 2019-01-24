@@ -21,7 +21,7 @@ _rm_elc:
 
 # I am sure this is totally safe...
 _install_cask_pkg:
-	curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+	curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
 
 _cask_build:
 	cask build
