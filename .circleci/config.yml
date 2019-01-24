@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:18.10
+
+    steps:
+
+      # prep the system
+      - restore_cache:
+          keys:
+            - "v1-apt"
+
+      - run:
+          name: "apt-get update"
+          command: "apt-get update"
+      - run:
+          name: "apt-get install"
+          command: "apt-get install -y ca-certificates emacs-nox make wget"
+
+      - restore_cache:
+          keys:
+            - "v1-dot-git"
+
+      - checkout
+
+      - run:
+          name: "make install cask"
+          command: "make _install_cask_pkg"
+
+      - run:
+          name: "make"
+          command: 'PATH="~/.cask/bin:$PATH" make'
+
+      # save a bunch of stuff.
+      - save_cache:
+          key: "v1-apt"
+          paths:
+            - "/var/cache/apt/archives"
+      - save_cache:
+          key: "v1-dot-git"
+          paths:
+            - ".git"

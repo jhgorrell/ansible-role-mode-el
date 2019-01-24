@@ -4,8 +4,8 @@ ansible-role-mode-el/README
 .. image::  https://melpa.org/packages/ansible-role-mode.svg
    :target: https://melpa.org/#/ansible-role-mode
 
-.. image::  https://travis-ci.org/jhgorrell/ansible-role-mode-el.svg?branch=master
-   :target: https://travis-ci.org/jhgorrell/ansible-role-mode-el
+.. image:: https://circleci.com/gh/jhgorrell/ssh-config-mode-el.svg?style=svg
+   :target: https://circleci.com/gh/jhgorrell/ssh-config-mode-el
 
 Provides a minor mode for use with ansible roles.
 
@@ -43,5 +43,6 @@ Links:
 ----------------------------------------
 
 - Github: https://github.com/jhgorrell/ansible-role-mode-el
-- Travis: https://travis-ci.org/jhgorrell/ansible-role-mode-el
 - Melpa: https://melpa.org/#/ansible-role-mode
+- Circleci: https://circleci.com/gh/jhgorrell/ansible-role-mode-el
+
